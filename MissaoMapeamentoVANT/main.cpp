@@ -30,6 +30,8 @@ int main() {
 	missao1->gerarRota();
 	missao1->mostrarRota();
 
+	delete pol;
 	delete missao1;
+
 	return 0;
 }
