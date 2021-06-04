@@ -14,17 +14,18 @@ private:
 
 public:
 	//MissaoMapeamento() {};
-	MissaoMapeamento(Poligono mapa);
+	MissaoMapeamento(Poligono mapa, int modo);
 	void mostrarRota();
 
 	//funcoes do modoDeMapeamento 1:
 	double acharYMaximo();
 	void gerarRota();
-	void automatizarMatplot();
 
 	//funcoes do modoDeMapeamento 2:
-
-	//funcoes do modoDeMapeamento 3:
+	void identificarParametros();
+	void mapeamentoHorizontal(int verticeInicial);
+	void mapeamentoVertical(int verticeInicial);
+	void mapeamentoInclinado(int verticeInicial);
 
 };
 

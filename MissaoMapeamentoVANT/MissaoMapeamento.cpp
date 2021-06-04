@@ -1,9 +1,17 @@
 #include "MissaoMapeamento.h"
 
-MissaoMapeamento::MissaoMapeamento(Poligono mapa)
+MissaoMapeamento::MissaoMapeamento(Poligono mapa, int modo)
 {
 	this->areaMapeada = mapa;
-	//this->modoDeMapeamento = modo;
+	this->modoDeMapeamento = modo;
+
+	if (modo == 1) {
+		gerarRota();
+	}
+	else {
+		identificarParametros();
+	}
+
 }
 
 void MissaoMapeamento::mostrarRota()
@@ -101,32 +109,34 @@ void MissaoMapeamento::gerarRota()
 	}
 }
 
-void MissaoMapeamento::automatizarMatplot()
+void MissaoMapeamento::identificarParametros()
 {
-	vector<Point> vertices = this->areaMapeada.getVertices();
-	cout << "Vetx = [";
-	for (Point iterator : vertices) {
-		cout << iterator.get_x() << " , ";
-	}
-	cout << vertices[0].get_x();
-	cout << "]" << endl;
+	int numeroVertice = 0;
+	cout << "Digite o numero do vertice onde o mapeamento iniciara: ";
+	cin >> numeroVertice;
 
-	cout << "Vety = [";
-	for (Point iterator : vertices) {
-		cout << iterator.get_y() << " , ";
-	}
-	cout << vertices[0].get_y();
-	cout << "]" << endl;
+	vector<Aresta> arestas = this->areaMapeada.getArestas();
+	Aresta arestaGeradora = arestas[numeroVertice -1];
 
-	cout << "x = [";
-	for (Point iterator : this->rota) {
-		cout << iterator.get_x() << " , ";
+	if (arestaGeradora.getCoefAngular() == 0) {
+		mapeamentoHorizontal(numeroVertice);
 	}
-	cout << "]" << endl;
+	else if (arestaGeradora.getCoefAngular() == DBL_MAX) {
+		mapeamentoVertical(numeroVertice);
+	}
+	else {
+		mapeamentoInclinado(numeroVertice);
+	}
+}
 
-	cout << "y = [";
-	for (Point iterator : this->rota) {
-		cout << iterator.get_y() << " , ";
-	}
-	cout << "]" << endl;
+void MissaoMapeamento::mapeamentoHorizontal(int verticeInicial)
+{
+}
+
+void MissaoMapeamento::mapeamentoVertical(int verticeInicial)
+{
+}
+
+void MissaoMapeamento::mapeamentoInclinado(int verticeInicial)
+{
 }

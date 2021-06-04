@@ -9,7 +9,7 @@ int main() {
 	vector<Point> pontos;
 
 
-	cout << "Digite o numero de vertices do poligo: ";
+	cout << "Digite o numero de vertices do poligono: ";
 	cin >> numeroPontos;
 	cout << "Agora, entre com as coordenadas de cada vertice em sentido anti-horario: ";
 
@@ -26,7 +26,7 @@ int main() {
 
 	Poligono* pol = new Poligono(pontos);
 
-	MissaoMapeamento* missao1 = new MissaoMapeamento(*pol);
+	MissaoMapeamento* missao1 = new MissaoMapeamento(*pol, 1);
 	missao1->gerarRota();
 	missao1->mostrarRota();
 
